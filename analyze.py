@@ -21,14 +21,11 @@ def calc_ci(x, y, n_stds):
     return confidence_interval
 
 if __name__=='__main__':
-    # If n were large enough, 1.96 would correspond to a 95% CI
-    # However, n is pretty small here.
-    # Following comments in the SO post mentioned above, the following URL
-    # http://www.graphpad.com/guides/prism/6/statistics/index.htm?confidence_intervals.htm
-    # suggests for n ~ 50 as here, a value of 2 is probably more appropriate.
-    # Basically only pay attention to the most significant digit.
+    # n is not very large here, say roughly n ~ 50
+    # But n_stds=2 still gives a roughly a 95% confidence interval so
+    # good enough for our purposes.
+    # FWIW n_std = 3 would still easily exclude 0.
     n_stds = 2
     ci = calc_ci(years, annual_averaged_anomoly, n_stds)
     print "Slope: ", (ci[0] + ci[1]) / 2
     print "CI: ", ci
-
