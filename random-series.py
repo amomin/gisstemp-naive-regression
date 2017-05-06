@@ -10,14 +10,14 @@ N = 100
 c = 0.0
 
 s = 1880
-base_temp = 0.0
-dCpC = 0.3
-l = 40
-noise = 0.9
+base_temp = -0.5
+dCpC = 1.6
+l = 50
+noise = 1.5
 
 for i in range(0,N):
     xs = np.array(range(s, s+l))
-    ys = np.array([base_temp - noise/2] * l) + \
+    ys = np.array([base_temp] * l) + \
          (dCpC / 100.0) * np.array(range(0, l)) + \
          noise * np.random.rand(1, l)
 

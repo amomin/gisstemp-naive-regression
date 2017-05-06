@@ -34,7 +34,9 @@ if __name__=='__main__':
     window = end_year - start_year
     if options['window'] != None and options['window'] < end_year - start_year:
         window = options['window']        
-        
+    
+    c = 0.0
+    N = 0.0
 
     for i in range(start_year, end_year - window + 1):
         j = i + window
@@ -53,3 +55,11 @@ if __name__=='__main__':
         print "\tSlope:", colored("%.02f" % (100*(ci[0] + ci[1]) / 2), 'red'), \
               "degrees C per century"
         print "\tCI: [%.02f C/100y, %.02f C/100y]" % (100*ci[0], 100*ci[1])
+        N += 1
+        if ci[0] < 0 and ci[1] > 0:
+            c += 1
+
+    print "Fraction of times 0 is in CI: ", colored("%.02f" % (c/N), 'red')
+    print "min/max over dataset: ", \
+          colored("%.02f" % (min(my_data[:,13])), 'red'), \
+          colored("%.02f" % (max(my_data[:,13])), 'red')
